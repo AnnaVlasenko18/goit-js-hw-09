@@ -55,6 +55,7 @@ img {
 input#datetime-picker {
   width: 200px;
   height: 32px;
+  margin-top: 30px;
   border-radius: 50%;
   border: none;
   background: #f1ebe5;

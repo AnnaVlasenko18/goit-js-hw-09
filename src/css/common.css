@@ -86,7 +86,7 @@ button {
   cursor: pointer;
   color: #fb0404;
   box-shadow: inset 0 3px 4px #ffffff, inset 0 -3px 4px #c4b59d;
-  transform: all 300ms linear;
+  margin-top: 15px;
 }
 
 .link {

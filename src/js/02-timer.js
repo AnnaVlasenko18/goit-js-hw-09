@@ -45,11 +45,11 @@ refs.startBtn.addEventListener('click', () => {
 flatpickr(refs.content, options);
 
 function timerOn(selectDate) {
-  const timerId = setInterval(() => {
+  const timerID = setInterval(() => {
     let currentDate = new Date();
     let resData = selectDate - currentDate;
     if (resData <= 0) {
-      clearInterval(timerId);
+      clearInterval(timerID);
       refs.content.disabled = false;
       Report.success('Congratulation! Timer stopped!',
         'Please, if you want to start timer, choose a date and click on start or reload this page',

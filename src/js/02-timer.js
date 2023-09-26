@@ -2,26 +2,25 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-const refs = {
-    content: document.querySelector('input#datetime-picker'),
-    startBtn: document.querySelector('button[data-start]'),
-    outDays: document.querySelector('[data-days]'),
-    outHours: document.querySelector('[data-hours]'),
-    outMinutes: document.querySelector('[data-minutes]'),
-    outSeconds: document.querySelector('[data-seconds]'),
-};
+const content = document.querySelector('#datetime-picker');
+const outDays = document.querySelector('[data-days]');
+const startData = document.querySelector('[data-start]');
+const outHours = document.querySelector('[data-hours]');
+const outMinutes = document.querySelector('[data-minutes]');
+const outSeconds = document.querySelector('[data-seconds]');
+
 
 document.body.style.backgroundColor = '#7004';
 
-refs.startBtn.desabled = true;
+startData.disabled = true;
 
 const options = {
    enableTime: true,
    time_24hr: true,
    defaultDate: new Date(),
    minuteIncrement: 1,
-   onClose(selectedDates) {
-    onCloseDate(selectedDates);
+    onClose(selectedDates) {
+      onCloseDate(selectedDates);
   },
 };
 
@@ -33,16 +32,17 @@ function onCloseDate(selectedDates) {
     return;
   }
   
-refs.startBtn.desabled = false;
+startData.disabled = false;
 
-refs.startBtn.addEventListener('click', () => {
-    refs.startBtn.disabled = true;
-    refs.content.disabled = true;
+  startData.addEventListener('click', onClickStart);
+  function onClickStart() {
+    startData.disabled = true;
+    content.disabled = true;
     timerOn(selectDate);
-  })
+  };
 };
 
-flatpickr(refs.content, options);
+flatpickr(content, options);
 
 function timerOn(selectDate) {
   const timerID = setInterval(() => {
@@ -50,7 +50,7 @@ function timerOn(selectDate) {
     let resData = selectDate - currentDate;
     if (resData <= 0) {
       clearInterval(timerID);
-      refs.content.disabled = false;
+      content.disabled = false;
       Report.success('Congratulation! Timer stopped!',
         'Please, if you want to start timer, choose a date and click on start or reload this page',
         'Okay');
@@ -79,10 +79,10 @@ function convertMs(ms) {
 
 function updateTimer(convertData) {
     const { days, hours, minutes, seconds } = convertData;
-    refs.outDays.textContent = addLeadingZero(days);
-    refs.outHours.textContent = addLeadingZero(hours);
-    refs.outMinutes.textContent = addLeadingZero(minutes);
-    refs.outSeconds.textContent = addLeadingZero(seconds);
+    outDays.textContent = addLeadingZero(days);
+    outHours.textContent = addLeadingZero(hours);
+    outMinutes.textContent = addLeadingZero(minutes);
+    outSeconds.textContent = addLeadingZero(seconds);
     
 };
 
